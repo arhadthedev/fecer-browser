@@ -1,0 +1,6 @@
+[submodule "tests/conformance_test262"]
+	path = tests/conformance_test262
+	url = https://github.com/tc39/test262.git
+[submodule "tests/conformance_wpt"]
+	path = tests/conformance_wpt
+	url = https://github.com/web-platform-tests/wpt.git

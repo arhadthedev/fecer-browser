@@ -12,6 +12,10 @@ Definitions:
     with a reader, and an automation script
   - format of both profile and user files
 
+- *initial development*: a state until the following test snapshots are passed:
+  - <https://github.com/tc39/test262/commit/6d353a4>
+  - <https://github.com/web-platform-tests/wpt/commit/07ae085>
+
 This versioning policy is respected for builds generated on official clones
 of the Fecer Browser repository:
 
