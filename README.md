@@ -1,3 +1,37 @@
+## Versions
+
+Fecer Browser follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Definitions:
+
+- *API of a library*:
+  - declarations in files inside `include/` directory
+  - format of input/output data streams
+
+- *API of an application*:
+  - position and composition of GUI elements for a user with a monitor, a user
+    with a reader, and an automation script
+  - format of both profile and user files
+
+This versioning policy is respected for builds generated on official clones
+of the Fecer Browser repository:
+
+- <https://github.com/arhadthedev/fecer-browser>
+
+
+### Branching
+
+The repository uses a GitLab flow with release branches. A `nextver` branch is
+a master, where actual development of features and bugfixes for the next version
+is performed. From this branch, release branches `{x}.{y}` are spawned. They are
+used to store bugfixes backported from `nextver` to every minor version ever
+published. The intent is to make life of distribution package maintainers
+easier. Inside a release branch, tags with proper `x.y.z` version numbers are
+created.
+
+Builds based on non-tagged commits are considered development, so their version
+is set to a pre-release _x_._y_._z_-dev+git._short_commit_id_.
+
+
 ## Legal information
 
 Copyright © 2021 Oleg Iarygin <oleg@arhadthedev.net>
