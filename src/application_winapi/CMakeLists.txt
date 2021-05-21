@@ -16,4 +16,5 @@
 
 cmake_minimum_required(VERSION 3.1)
 
-add_executable(fecer_browser WIN32 main.c)
+add_executable(fecer_browser WIN32 res/fecer_browser.rc main.c)
+target_include_directories(fecer_browser PRIVATE "../../include")

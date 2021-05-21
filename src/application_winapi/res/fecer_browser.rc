@@ -1,0 +1,75 @@
+/* resource.rc - resources for fecer_browser.exe
+ *
+ * Copyright 2021 Oleg Iarygin <oleg@arhadthedev.net>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#define WIN32_LEAN_AND_MEAN
+
+#include <fecer_browser/version.h>
+#include <windows.h>
+
+#define NUM_VERSION FECER_BROWSER_VERSION_MAJOR, FECER_BROWSER_VERSION_MINOR, \
+                    FECER_BROWSER_VERSION_PATCH, 0
+
+#ifdef NDEBUG
+#   define DEBUG_FLAGS 0
+#else
+#   define DEBUG_FLAGS VS_FF_DEBUG
+#endif
+
+#if FECER_BROWSER_BUILD_TYPE == FECER_BROWSER_ARCHIVE
+#   define BUILD_FLAGS VS_FF_PRIVATEBUILD
+#   define BUILD_STRING  VALUE "PrivateBuild", FECER_BROWSER_VERSION_SUFFIX
+#elif FECER_BROWSER_BUILD_TYPE == FECER_BROWSER_INDEV
+#   define BUILD_FLAGS VS_FF_SPECIALBUILD
+#   define BUILD_STRING "SpecialBuild", FECER_BROWSER_VERSION_SUFFIX
+#endif
+
+#define LANGUAGE_INDEPENDENT_LINES \
+    VALUE "FileVersion", FECER_BROWSER_VERSION_STRING \
+    VALUE "InternalName", "fecer_browser" \
+    VALUE "OriginalFilename", "fecer_browser" \
+    VALUE "ProductName", "Fecer Browser" \
+    VALUE "ProductVersion", FECER_BROWSER_VERSION_STRING \
+    BUILD_STRING
+
+/* RC does not support operators, so we cannot use MAKELANGID macro */
+#define LANG_EN_US 0x0409 // RC_MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US)
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION     NUM_VERSION
+    PRODUCTVERSION  NUM_VERSION
+    FILEOS          VOS_NT_WINDOWS32
+    FILETYPE        VFT_APP
+    FILESUBTYPE     VFT2_UNKNOWN
+    FILEFLAGSMASK   VS_FF_DEBUG | VS_FF_PRIVATEBUILD | VS_FF_SPECIALBUILD
+    FILEFLAGS       DEBUG_FLAGS | BUILD_FLAGS
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+    	/* en-US, Windows-1252 */
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "Oleg Iarygin (oleg@arhadthedev.net)"
+            VALUE "FileDescription", "Fecer Browser main application"
+            VALUE "LegalCopyright", "Copyright 2021 Oleg Iarygin"
+            LANGUAGE_INDEPENDENT_LINES
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", LANG_EN_US, 1252
+    END
+END
