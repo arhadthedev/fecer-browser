@@ -1,3 +1,5 @@
+# <img src="doc/logo.png" width="32" alt=""> Fecer Browser
+
 ## Versions
 
 Fecer Browser follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
