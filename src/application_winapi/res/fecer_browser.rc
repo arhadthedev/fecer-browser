@@ -17,6 +17,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 
+#include "resource.h"
 #include <fecer_browser/version.h>
 #include <windows.h>
 
@@ -73,3 +74,11 @@ BEGIN
         VALUE "Translation", LANG_EN_US, 1252
     END
 END
+
+// An application icon is the first one met while scanning EXE resources.
+// Reference: <https://docs.microsoft.com/en-us/windows/win32/menurc/about-icons#icon-display>
+
+#ifndef FECER_BROWSER_ICON
+#   error "build with CMake to generate FECER_BROWSER_ICON"
+#endif
+IDI_APPLICATION ICON FECER_BROWSER_ICON

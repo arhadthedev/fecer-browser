@@ -18,3 +18,9 @@ cmake_minimum_required(VERSION 3.1)
 
 add_executable(fecer_browser WIN32 res/fecer_browser.rc main.c)
 target_include_directories(fecer_browser PRIVATE "../../include")
+
+set(ICON_IN doc/logo.png)
+set(ICON_OUT ${CMAKE_CURRENT_BINARY_DIR}/main.ico)
+execute_process(COMMAND python util/mypng2ico.py ${ICON_IN} ${ICON_OUT} 256
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+target_compile_definitions(fecer_browser PRIVATE FECER_BROWSER_ICON="${ICON_OUT}")
