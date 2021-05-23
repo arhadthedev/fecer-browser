@@ -38,6 +38,11 @@ Builds based on non-tagged commits are considered development, so their version
 is set to a pre-release _x_._y_._z_-dev+git._short_commit_id_.
 
 
+## Documentation
+
+To generate API manual in `doc/api_autogen`, run Doxygen from `doc` directory.
+
+
 ## Legal information
 
 Copyright © 2021 Oleg Iarygin <oleg@arhadthedev.net>

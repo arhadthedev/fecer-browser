@@ -1,0 +1,29 @@
+# Project
+
+PROJECT_NAME           = "Fecer Browser"
+PROJECT_NUMBER         = 0.0.1
+PROJECT_BRIEF          = "A blazing fast web browser with a little memory footprint capable of hundreds of tabs in the same time"
+PROJECT_LOGO           = ./logo.png
+
+# Input
+
+INPUT                  = ../include
+RECURSIVE              = YES
+
+# Analysis
+
+PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS
+CLASS_DIAGRAMS         = NO
+
+# Progress
+QUIET                  = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = YES
+
+# Output
+
+OUTPUT_DIRECTORY       = ./api_autogen
+HTML_OUTPUT            = .
+OPTIMIZE_OUTPUT_FOR_C  = YES
+SEARCHENGINE           = NO
+GENERATE_LATEX         = NO
