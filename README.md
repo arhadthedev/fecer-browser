@@ -108,13 +108,17 @@ used in the compilation of shipped components.
 
    For Windows it can be, for example, one of the following sets:
 
-   - CMake, Ninja, LLVM+Visual Studio Build Tools, Windows SDK
+   - CMake, Ninja, LLVM >= 13.0 + Visual Studio Build Tools, Windows SDK
    - CMake, Ninja, MinGW-w64
    - Visual Studio >= 16.8 (2019, when C11 support was added)
 
-   Technically, C99 only is needed. However, Microsoft denies its support
-   because of its insecure on-stack variable-length arrays. Instead, it supports
-   C11 that makes such a feature optional.
+   *On LLVM: llvm-rc before 64bc44f (13.0) had no preprocessor. As a result,
+   \*.rc Windows resource files could not use identifiers from Windows SDK and
+   definitions from resource.h.*
+
+   *On Visual Studio: technically, C99 only is needed. However, Microsoft denies
+   its support because of its insecure on-stack variable-length arrays. Instead,
+   it supports C11 that makes such a feature optional.*
 
    Then, install Python >= 3.2 (because of argparse) to run scripts from `util`.
 
@@ -151,35 +155,11 @@ cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE="Release" ..
 
 # For Visual Studio users no matter whether Ninja installed or not
 cmake -G "Visual Studio 16 2019" ..
-
-# For LLVM users see below
 ```
 
 You need to run this command only once, for an empty build directory.
 A generated environment has a built-in check for modifications of source
 CMakeLists.txt files.
-
-#### For LLVM+Visual Studio Build Tools users
-
-To build `application_winapi`, a compiler for \*.rc files is required. The one
-supplied with LLVM (llvm-rc) is incomplete, so use rc.exe supplied with Windows
-SDK instead.
-
-For this, you need to know where the SDK is installed (for example,
-`C:/Program Files (x86)/Windows Kits/10`). Navigate into `Include` and `bin`
-directories and copy a path to a version folder inside referred further as
-`{INC}` and `{BIN}` (for example,
-{INC}=`C:/Program Files (x86)/Windows Kits/10/Include/10.0.10240.0`,
-{BIN}=`C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0`).
-
-Then, find out where Visual Studio tools are installed, referred further as
-`{VC}` (for example,
-{VC}=`C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910`).
-
-Then, run a command as in "How to prepare a project", but with extra keys:
-
-- -DCMAKE_RC_COMPILER="{BIN}/x86/rc.exe"
-- -DCMAKE_RC_FLAGS="-I\"{INC}/um\" -I\"{INC}/shared\" -I\"{INC}/ucrt\" -I\"{VC}/include\""
 
 ### Building and running
 
