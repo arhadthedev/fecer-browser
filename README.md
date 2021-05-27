@@ -134,7 +134,10 @@ used in the compilation of shipped components.
    engines stripped away. Apple's Safari, though, uses a more modern Nitro
    engine.
 
-2. Optionally, to build tests, install Boost.Test.
+2. Install libraries:
+
+  - Boost.Test >= 1.59 until you opt out of tests by passing
+    `-DBUILD_TESTING=NO` to CMake (see *How to prepare a project* section).
 
 ### How to prepare a project
 
@@ -173,13 +176,14 @@ cmake --build . --config Release
 
 #### Tests
 
-The command above does not build tests. You need to specify a target explicitly:
+The command above does not build tests. To build and run tests, navigate into
+a build directory and run the following:
 
 ```bash
-cmake --build . --config Release --target tests
+ctest
 ```
 
-To run tests from Visual Studio, make `tests` project active (menu
+To run tests from Visual Studio, set RUN_TESTS project as a startup one (menu
 `Project -> Properties`, then category `Common Properties -> Startup Project`,
 a field `Single startup project`).
 

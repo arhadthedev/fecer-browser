@@ -14,7 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.1)
+# tests: Boost::boost in FindBoost was introduced in 3.5
+cmake_minimum_required(VERSION 3.5)
 
 project(fecer_browser)
 
@@ -46,4 +47,9 @@ add_compile_definitions(FECER_BROWSER_VERSION_SUFFIX="${VERSION_SUFFIX}")
 
 if(WIN32)
     add_subdirectory(src/application_winapi)
+endif()
+
+include(CTest)
+if(BUILD_TESTING)
+    add_subdirectory(tests)
 endif()
