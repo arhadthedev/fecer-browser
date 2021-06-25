@@ -45,6 +45,8 @@ endif()
 add_compile_definitions(FECER_BROWSER_BUILD_TYPE=${BUILD_TYPE})
 add_compile_definitions(FECER_BROWSER_VERSION_SUFFIX="${VERSION_SUFFIX}")
 
+add_subdirectory(src/script_engine)
+
 if(WIN32)
     add_subdirectory(src/application_winapi)
 endif()
