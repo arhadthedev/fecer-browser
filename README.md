@@ -134,10 +134,9 @@ used in the compilation of shipped components.
    engines stripped away. Apple's Safari, though, uses a more modern Nitro
    engine.
 
-2. Install libraries:
+2. *For Windows users only:* install vcpkg package manager:
 
-  - Boost.Test >= 1.59 until you opt out of tests by passing
-    `-DBUILD_TESTING=NO` to CMake (see *How to prepare a project* section).
+   See <https://vcpkg.io/en/getting-started.html> for instructions.
 
 ### How to prepare a project
 
@@ -159,6 +158,9 @@ cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE="Release" ..
 # For Visual Studio users no matter whether Ninja installed or not
 cmake -G "Visual Studio 16 2019" ..
 ```
+
+*For Windows users only:* you also need to feed an extra argument to cmake:
+`-DCMAKE_TOOLCHAIN_FILE="[path to vcpkg]/scripts/buildsystems/vcpkg.cmake"`.
 
 You need to run this command only once, for an empty build directory.
 A generated environment has a built-in check for modifications of source
